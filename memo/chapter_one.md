@@ -7,11 +7,11 @@
   - 実行環境によらない共通な動作が定義された仕様。
   - ESMAScript の読み方は"エスマスクリプト"
   - ES2015 以降は毎年新しいバージョンがリリースされている。
-  - 最新の仕様書: https://tc39.es/ecma262/
+  - 最新の仕様書: <https://tc39.es/ecma262/>
     - Living Standard(常に最新版を公開する仕組み) で管理されている。
   - 仕様策定のプロセスは 5 段階(0 から 4 まで)のステージに分かれる
     - ステージ 4 未満の使用は安定していないことが多い
-- JavaScript のリファレンスサイト: https://developer.mozilla.org/ja/
+- JavaScript のリファレンスサイト: <https://developer.mozilla.org/ja/>
 
 ## コメント
 
@@ -155,7 +155,7 @@ let let; // NG: `let`は変数宣言のために予約されているので利�
 let if; // NG: `if`はif文のために予約されているので利用できない
 ```
 
-- 予約後の一覧は MDN のドキュメントを参照: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar
+- 予約後の一覧は MDN のドキュメントを参照: <https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar>
 
 ### const は定数ではない
 
