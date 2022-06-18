@@ -173,3 +173,91 @@ object.key = "新しい値";
 ```
 
 - `const`で宣言した変数が常に同じ値を示すとは限らないから、定数とは呼べない。
+
+## 値の評価と表示
+
+- 値の評価: 入力した値を評価してその結果を返すこと
+- JavaScript Primer では FireFox の開発者ツールを使用した説明が記載されていたが、手元では Chrome を使ってやってみよう。
+
+### ブラウザで JavaScript を実行する
+
+- REPL(read–eval–print loop): コードを評価してその結果を表示する機能
+- Chrome で試してみると、エンターキーを押す前に結果が薄い文字で表示されていて便利。
+- REPL ではその REPL を終了するまで const キーワードなどで宣言した変数が残り続けるから注意する。
+  - たとえば１行ずつ実行したとしても、`const`で同じ変数名で二度目の変数定義をしようとするとエラーになる。
+- ブラウザの開発者ツールだとページをリロードすると REPL がリセットされる。
+  - redeclaration（再定義）のエラーが出たらとりあえずリロードしてみる。
+
+### HTML ファイルを作成し JavaScript コードを読み込む方法
+
+- エディタの設定
+
+  - 文字コード: UTF-8
+  - 改行コード: LF
+
+- `<script src="./index.js"></script>`により同じディレクトリ内の js ファイルを読み込む。
+  - [example/index.js](../example/index.js)
+  - [example/index.html](../example/index.html)
+
+### Console API
+
+- ブラウザのコンソールに出力する。
+- `console.log(引数)`の引数にコンソール表示したい値を渡すことで、評価結果がコンソールに表示される。
+
+- 先に引数である変数を評価してから、その結果をコンソールに表示することも可能。
+
+```js
+const total = 42 + 42;
+console.log(total); // => 84
+```
+
+- プリントデバッグとしても利用される。
+
+### コードの評価とエラー
+
+- エラーには大きく分けて構文エラーと実行時エラーの 2 種類がある。
+
+### 構文エラー
+
+- コードをパース(解釈)する段階で文法の間違いがあるとプログラムは実行されず構文エラーを返す。
+
+```js
+console.log(1; // => SyntaxError: missing ) after argument list
+```
+
+> SyntaxError: missing ) after argument list[詳細] index.js:1:13
+
+- 下記のようにエラーの種類・内容・ファイル名・行番号・列番号が記される。
+
+```txt
+SyntaxError: missing ) after argument list[詳細] index.js:1:13
+^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^      ^^^^^^^^　^^^^
+エラーの種類                |                        | 　行番号:列番号
+                  エラー内容の説明                 ファイル名
+```
+
+- Firefox では[詳細]というリンクがエラーメッセージに関する MDN の解説ページへのリンクとなっているらしい。
+  - Chrome ではリンクにはなっていなかったが検索すると一番上に同じ MDN の解説ページが表示された。
+
+### 実行時エラー
+
+- プログラムを実行中に発生するエラー。ランタイムエラーとも。
+
+```js
+const value = "値";
+console.log(x); // => ReferenceError: x is not defined
+```
+
+> ReferenceError: x is not defined[詳細] index.js:2:1
+
+- 実行時エラーは構文エラーよりも種類が多い。
+- デバッグ: エラーの原因を特定し、修正する作業
+
+### エラーの原因を探すのに参考になるサイト
+
+- [MDN JavaScript エラーリファレンス](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors)
+  - 構文エラー、実行時エラーの典型例がまとまっている
+- エラー部の検索に使えるサイト
+  - [google](https://www.google.com/)
+  - [github](https://github.com/)
+  - [Stack Overflow](https://stackoverflow.com/)
