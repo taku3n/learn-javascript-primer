@@ -114,3 +114,22 @@ console.log(undefined_value ?? "undefinedだったら右側が出力される");
 // 条件（三項）演算子
 console.log(true ? "trueの時に返される左側" : "falseの時に返される右側");
 console.log(false ? "trueの時に返される左側" : "falseの時に返される右側");
+
+/*
+ ## 暗黙的な型変換
+*/
+
+// 文字列型の数字 と 数値型の数字
+const x = 1,
+  y = "2",
+  z = 3;
+console.log(x + y + z); // => "123"
+console.log(y + x + z); // => "213"
+console.log(x + z + y); // => "42"
+
+// 文字列から数値の取り出し
+const string_okaikei = "1480円になります。";
+console.log(Number.parseInt(string_okaikei, 10)); // => 1480
+
+const string_padding = "余白を10px足してください。";
+console.log(Number.parseInt(string_padding, 10)); // => 数値の前に文字列がくるとNaN
