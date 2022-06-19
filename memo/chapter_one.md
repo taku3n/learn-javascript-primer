@@ -1179,3 +1179,188 @@ if (isAbString || isXyNumber) {
 
 - 上記の例だと、式 1、式 2、式 3 の順に評価され、式 3 の評価結果を返す。
 - const による変数宣言時にカンマで区切るのはカンマ演算子ではない。
+
+## 暗黙的な型変換
+
+- 厳密等価演算子（`===`）は暗黙的な型変換をしない(推奨)
+- 等価演算子（`==`）は暗黙的な型変換をする(非推奨)
+
+```js
+// `==`では、異なるデータ型は暗黙的な型変換をしてから比較される
+// 暗黙的な型変換によって 1 == 1 のように変換されてから比較される
+console.log(1 == "1"); // => true
+```
+
+- 数値と真偽値の加算も暗黙的な型変換をする
+
+```js
+// 暗黙的な型変換が行われ、数値の加算として計算される
+1 + true; // => 2
+// 次のように暗黙的に変換されてから計算される
+1 + 1; // => 2
+```
+
+### 暗黙的な型変換とは
+
+- ある処理において、その処理過程で行われる明示的ではない型変換のこと。
+
+#### 等価演算子の暗黙的な型変換
+
+- 比較前にオペランド同士が同じ型となるように暗黙的な型変換する。
+
+```js
+// 異なる型である場合に暗黙的な型変換が行われる
+console.log(1 == "1"); // => true
+console.log(0 == false); // => true
+console.log(10 == ["10"]); // => true
+```
+
+### 明示的な型変換
+
+#### 任意の値 → 真偽値
+
+- Boolean コンストラクタ関数
+  - falsy な値は`false`になる。
+  - falsy でない値は`true`になる。
+
+#### 数値 → 文字列
+
+- String コンストラクタ関数
+  - 数値以外にもいろいろな値を文字列へと変換できる。
+  - オブジェクトに対しては、あまり意味のある文字列を返さないため、使用はあくまでプリミティブ型に留める。
+
+```js
+String(1); // => "1"
+String("str"); // => "str"
+String(true); // => "true"
+String(null); // => "null"
+String(undefined); // => "undefined"
+String(Symbol("シンボルの説明文")); // => "Symbol(シンボルの説明文)"
+// プリミティブ型ではない値の場合
+String([1, 2, 3]); // => "1,2,3"
+String({ key: "value" }); // => "[object Object]"
+String(function () {}); // "function() {}"
+```
+
+#### シンボル → 文字列
+
+- ES2015 で追加されたプリミティブ型であるシンボルは暗黙的に型変換できない。
+
+```js
+"文字列と" + Symbol("シンボルの説明"); // => TypeError: can't convert symbol to string
+```
+
+- String コンストラクタ関数を使うと明示的に型変換できる。
+
+```js
+"文字列と" + String(Symbol("シンボルの説明")); // => "文字列とSymbol(シンボルの説明)"
+```
+
+#### 文字列 → 数値
+
+- Number コンストラクタ関数
+  - 例えばユーザー入力は文字列でしか受け取ることができないため、それを数値に変換する時に使う。
+
+```js
+// ユーザー入力を文字列として受け取る
+const input = window.prompt("数字を入力してください", "42");
+// 文字列を数値に変換する
+const num = Number(input);
+console.log(typeof num); // => "number"
+console.log(num); // 入力された文字列を数値に変換したもの
+```
+
+- Number.parseInt
+  - 文字列から整数を取り出す。
+- Number.parseFloat
+  - 文字列から浮動小数点数を取り出す。
+
+```js
+// "1"をパースして10進数として取り出す
+console.log(Number.parseInt("1", 10)); // => 1
+// 余計な文字は無視してパースした結果を返す
+console.log(Number.parseInt("42px", 10)); // => 42
+console.log(Number.parseInt("10.5", 10)); // => 10
+// 文字列をパースして浮動小数点数として取り出す
+console.log(Number.parseFloat("1")); // => 1
+console.log(Number.parseFloat("42.5px")); // => 42.5
+console.log(Number.parseFloat("10.5")); // => 10.5
+```
+
+- 数字以外の文字列を渡すと`NaN`が返る。
+
+```js
+// 数字ではないため、数値へは変換できない
+Number("文字列"); // => NaN
+// 未定義の値はNaNになる
+Number(undefined); // => NaN
+```
+
+- NaN になってしまった場合の処理を書く必要がある。
+
+```js
+const userInput = "任意の文字列";
+const num = Number.parseInt(userInput, 10);
+if (Number.isNaN(num)) {
+  console.log("パースした結果NaNになった", num);
+}
+```
+
+#### NaN は Not a Number だけど Number 型
+
+- 互換性のない性質のデータを明示的に変換したとしても結果は NaN になる。
+
+```js
+Number({}); // => NaN
+```
+
+- NaN は何と演算しても結果は NaN になる。
+
+```js
+const x = 10;
+const y = x + NaN;
+const z = y + 20;
+console.log(x); // => 10
+console.log(y); // => NaN
+console.log(z); // => NaN
+```
+
+- NaN は number 型。
+
+```js
+// NaNはnumber型
+console.log(typeof NaN); // => "number"
+```
+
+- NaN は自分自身と一致しない。
+
+```js
+function isNaN(x) {
+  // NaNは自分自身と一致しない
+  return x !== x;
+}
+console.log(isNaN(1)); // => false
+console.log(isNaN("str")); // => false
+console.log(isNaN({})); // => false
+console.log(isNaN([])); // => false
+console.log(isNaN(NaN)); // => true
+
+// Number.isNaN(x)メソッド
+Number.isNaN(NaN); // => true
+```
+
+- NaN は暗黙的な型変換の中でももっとも避けたい値。
+
+  - NaN は何と演算しても結果が NaN となってしまうためデバッグが難しいため。
+
+- 関数で意図しない NaN への変換を避ける方法は 2 つ。
+  - 呼ばれる側で、Number 型の値以外を受けつけなくする。
+  - 呼び出す側で、Number 型の値のみを渡すようにする。
+  - どちらも行うことがより安全なコードにつながる。
+
+### 明示的な変換でも解決しないこと
+
+- 例えば、空文字列かどうかを判定するとき
+  - 明示的に Boolean コンストラクタ関数で真偽値へ変換するだけだと、0 も空文字列となってしまう(falsy だから)。
+  - 空文字列とは「String 型で文字長が 0 の値」であると定義するとより正確に書ける。
+  - 型変換をする前にまず別の方法で解決できないかを考えることも大切。
