@@ -13,123 +13,165 @@
  ## 変数と宣言
 */
 
-const morning = "フレンチトースト";
-console.log("朝食は" + morning);
+function chapter_variables() {
+  const morning = "フレンチトースト";
+  console.log("朝食は" + morning);
 
-let lunch = "カレー";
-lunch = "家系ラーメン";
-console.log("ランチは" + lunch);
+  let lunch = "カレー";
+  lunch = "家系ラーメン";
+  console.log("ランチは" + lunch);
 
-var dinner = "きつねうどん";
-console.log("夕食は" + dinner);
+  var dinner = "きつねうどん";
+  console.log("夕食は" + dinner);
+}
+// chapter_variables();
 
 /*
  ## データ型とリテラル
 */
 
-console.log(typeof true); // => "boolean"
-console.log(typeof 46); // => "number"
-console.log(typeof 1996199254740992n); // => "bigint"
-console.log(typeof "これは文字列です"); // => "string"
-console.log(typeof Symbol("シンボル")); // => "symbol"
-console.log(typeof undefined); // => "undefined"
-console.log(typeof null); // => "object"
-console.log(typeof ["配列"]); // => "object"
-console.log(typeof { key: "value" }); // => "object"
-console.log(typeof function () {}); // => "function"
+function chapter_data_type() {
+  console.log(typeof true); // => "boolean"
+  console.log(typeof 46); // => "number"
+  console.log(typeof 1996199254740992n); // => "bigint"
+  console.log(typeof "これは文字列です"); // => "string"
+  console.log(typeof Symbol("シンボル")); // => "symbol"
+  console.log(typeof undefined); // => "undefined"
+  console.log(typeof null); // => "object"
+  console.log(typeof ["配列"]); // => "object"
+  console.log(typeof { key: "value" }); // => "object"
+  console.log(typeof function () {}); // => "function"
 
-console.log(`今日の朝ごはんは${morning}でした。`);
+  console.log(`今日の朝ごはんは${morning}でした。`);
 
-// 数値
-num_decimal = 9980; //10進数
-console.log(`10進数の例:${num_decimal}`);
+  // 数値
+  num_decimal = 9980; //10進数
+  console.log(`10進数の例:${num_decimal}`);
 
-num_binary = 0b0101; //2進数
-console.log(`2進数の例:${num_binary}`);
+  num_binary = 0b0101; //2進数
+  console.log(`2進数の例:${num_binary}`);
 
-num_octal = 0o156; //8進数
-console.log(`8進数の例:${num_octal}`);
+  num_octal = 0o156; //8進数
+  console.log(`8進数の例:${num_octal}`);
 
-num_hexadecimal = 0x00aa; //16進数
-console.log(`16進数の例:${num_hexadecimal}`);
+  num_hexadecimal = 0x00aa; //16進数
+  console.log(`16進数の例:${num_hexadecimal}`);
 
-// undefinedが宣言できる(非推奨)
-var undefined = "独自の未定義値"; // undefinedという名前の変数をエラーなく定義できる
-console.log(undefined); // => "独自の未定義値"
+  // undefinedが宣言できる(非推奨)
+  var undefined = "独自の未定義値"; // undefinedという名前の変数をエラーなく定義できる
+  console.log(undefined); // => "独自の未定義値"
 
-// オブジェクト
-const apple = {
-  jp_name: "りんご",
-  color: "red", // ドキュメント上ではキーもダブルクォートで囲われていたが、Pritterが外している
-  shape: "sphere",
-};
-console.log(`りんごの色は${apple.color}で形は${apple.shape}です。`);
+  // オブジェクト
+  const apple = {
+    jp_name: "りんご",
+    color: "red", // ドキュメント上ではキーもダブルクォートで囲われていたが、Pritterが外している
+    shape: "sphere",
+  };
+  console.log(`りんごの色は${apple.color}で形は${apple.shape}です。`);
 
-// 配列
-const tdd_steps = [
-  "テストケースを作成する",
-  "テスト結果をグリーンにする",
-  "リファクタリングする",
-];
-console.log(`ToDoは「${tdd_steps[2]}」です。`);
+  // 配列
+  const tdd_steps = [
+    "テストケースを作成する",
+    "テスト結果をグリーンにする",
+    "リファクタリングする",
+  ];
+  console.log(`ToDoは「${tdd_steps[2]}」です。`);
+}
+// chapter_data_type();
 
 /*
  ## 演算子
 */
 
-// 単項プラス演算子
+function chapter_operator() {
+  // 単項プラス演算子
 
-console.log(1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9);
+  console.log(1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9);
 
-restaurant_name = "まるまるカフェ";
-restaurant_menu = "しかくパン";
+  restaurant_name = "まるまるカフェ";
+  restaurant_menu = "しかくパン";
 
-console.log(restaurant_name + "で" + restaurant_menu + "を食べます。");
+  console.log(restaurant_name + "で" + restaurant_menu + "を食べます。");
 
-// インクリメント演算子
-let increment_num = 1;
-increment_num++;
-increment_num++;
-increment_num++;
-console.log("1を3回インクリメントすると" + increment_num);
+  // インクリメント演算子
+  let increment_num = 1;
+  increment_num++;
+  increment_num++;
+  increment_num++;
+  console.log("1を3回インクリメントすると" + increment_num);
 
-// 厳密等価演算子
-const dog = "ポメラニアン";
-const cat = "ラグドール";
-const string_wrapper_dog = new String("ポメラニアン");
+  // 厳密等価演算子
+  const dog = "ポメラニアン";
+  const cat = "ラグドール";
+  const string_wrapper_dog = new String("ポメラニアン");
 
-console.log(dog === cat);
-console.log(dog === dog);
-console.log(dog === string_wrapper_dog); //Stringでラップすると型が違うと判定される
+  console.log(dog === cat);
+  console.log(dog === dog);
+  console.log(dog === string_wrapper_dog); //Stringでラップすると型が違うと判定される
 
-// AND演算子
-console.log(true && "Andはtrueで右側を返すので出力される");
-console.log(false && "Andはfalseで左側を返すので出力されない");
+  // AND演算子
+  console.log(true && "Andはtrueで右側を返すので出力される");
+  console.log(false && "Andはfalseで左側を返すので出力されない");
 
-// Nullish coalescing演算子
-let undefined_value;
-// undefined_value = "undefinedじゃなければ左側が出力される";
-console.log(undefined_value ?? "undefinedだったら右側が出力される");
+  // Nullish coalescing演算子
+  let undefined_value;
+  // undefined_value = "undefinedじゃなければ左側が出力される";
+  console.log(undefined_value ?? "undefinedだったら右側が出力される");
 
-// 条件（三項）演算子
-console.log(true ? "trueの時に返される左側" : "falseの時に返される右側");
-console.log(false ? "trueの時に返される左側" : "falseの時に返される右側");
+  // 条件（三項）演算子
+  console.log(true ? "trueの時に返される左側" : "falseの時に返される右側");
+  console.log(false ? "trueの時に返される左側" : "falseの時に返される右側");
+}
+// chapter_operator();
 
 /*
  ## 暗黙的な型変換
 */
 
-// 文字列型の数字 と 数値型の数字
-const x = 1,
-  y = "2",
-  z = 3;
-console.log(x + y + z); // => "123"
-console.log(y + x + z); // => "213"
-console.log(x + z + y); // => "42"
+function chapter_implecit_coercion() {
+  // 文字列型の数字 と 数値型の数字
+  const x = 1,
+    y = "2",
+    z = 3;
+  console.log(x + y + z); // => "123"
+  console.log(y + x + z); // => "213"
+  console.log(x + z + y); // => "42"
 
-// 文字列から数値の取り出し
-const string_okaikei = "1480円になります。";
-console.log(Number.parseInt(string_okaikei, 10)); // => 1480
+  // 文字列から数値の取り出し
+  const string_okaikei = "1480円になります。";
+  console.log(Number.parseInt(string_okaikei, 10)); // => 1480
 
-const string_padding = "余白を10px足してください。";
-console.log(Number.parseInt(string_padding, 10)); // => 数値の前に文字列がくるとNaN
+  const string_padding = "余白を10px足してください。";
+  console.log(Number.parseInt(string_padding, 10)); // => 数値の前に文字列がくるとNaN
+}
+// chapter_implecit_coercion();
+
+/*
+ ## 関数と宣言
+*/
+
+// 関数宣言
+function eating_report(food) {
+  return `さっき${food}を食べました。`;
+}
+// console.log(eating_report("海老とアボカドの塩レモンパスタ"));
+
+// arrow function
+const drinking_report = (drink) => {
+  return `さっき${drink}を飲みました。`;
+};
+// console.log(drinking_report("スプモーニ"));
+
+const making_report = (food) => `さっき${food}を作りました。`;
+// console.log(making_report("レタスチャーハン"));
+
+// メソッド
+const cooking_machine = {
+  boil(ingredient, minutes_num) {
+    return `${ingredient}を${minutes_num}分茹でてください`;
+  },
+  fry(ingredient, minutes_num) {
+    return `${ingredient}を${minutes_num}分茹でてください`;
+  },
+};
+// console.log(cooking_machine.boil("卵", "7"));
